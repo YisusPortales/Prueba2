@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Usuarios } from './../Interfaces/Usuarios';
 import { HttpClient } from '@angular/common/http';
 import { delay, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class LoginService {
   public userActivo: Usuarios | null = null;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   public iniciarSesion(username: string, password: string){
@@ -35,6 +37,12 @@ export class LoginService {
       this.cargando.next(false);
       console.log("Credenciales de usuario correctas")
       console.log(datos);
+      this.router.navigate(['/','productos']);
     });
+  }
+  public cerrarSesion(){
+    if(this.userActivo){
+      this.userActivo = null;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoginService } from './../servicio/login.service';
+import { ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,8 @@ export class LoginPage implements OnInit {
     public login: LoginService
   ) {
     this.formulario = fb.group({
-      username: ["Usuario", [Validators.required], []], 
-      password: ["Contrasena", [Validators.required, Validators.minLength(5)], []]
+      username: ["", [Validators.required], []], 
+      password: ["", [Validators.required, Validators.minLength(5)], []]
     });
    }
 
