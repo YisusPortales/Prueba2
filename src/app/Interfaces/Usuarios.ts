@@ -5,5 +5,5 @@ export interface Usuarios{
     firstName: string;
     lastName: string;
     gender: string;
-    acessToken: string;
+    accessToken: string;
 }

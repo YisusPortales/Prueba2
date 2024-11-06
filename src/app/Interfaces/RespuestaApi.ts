@@ -1,8 +1,7 @@
 import { Productos } from "./Productos"
 
 export interface RespuestaApi{
-
-    produts: Productos[];
+    products: Productos[];
     limit: number;
     skip: number;
     total: number;

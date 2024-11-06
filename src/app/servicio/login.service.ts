@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
   private readonly URL_LOGIN = "https://dummyjson.com/auth/login";
   private cargando = new BehaviorSubject<Boolean>(false);
@@ -19,11 +20,14 @@ export class LoginService {
   ) { }
 
   public iniciarSesion(username: string, password: string){
+
     const cuerpo = {
       username: username,
       password: password
     }
+    
     this.cargando.next(true);
+
     this.http.post<Usuarios>(this.URL_LOGIN, JSON.stringify(cuerpo),{
       headers:{
 
@@ -34,10 +38,11 @@ export class LoginService {
     .pipe(delay(2000))
     .subscribe( datos => {
       this.userActivo = datos;
+      console.log("la informacion fue carga al usuario")
+      console.log(this.userActivo)
       this.cargando.next(false);
-      console.log("Credenciales de usuario correctas")
-      console.log(datos);
       this.router.navigate(['/','productos']);
+
     });
   }
   public cerrarSesion(){

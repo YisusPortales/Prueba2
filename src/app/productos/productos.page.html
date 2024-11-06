@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>productos</ion-title>
+    <ion-title>Catalogo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">productos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="prev()">Prev</ion-button>
+          </ion-buttons> 
+          <ion-buttons slot="end">
+            <ion-button (click)="next()">Next</ion-button> 
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list *ngIf="productos">
+          <ion-item *ngFor="let producto of productos">
+            <ion-thumbnail aria-hidden="true" slot="start">
+              <img alt="" [src]="producto.thumbnail"/>
+            </ion-thumbnail>
+            <ion-label>{{ producto.title }}</ion-label>
+            <ion-label color="success" > <h2> {{ producto.price }} </h2></ion-label>
+            <ion-label color="tertiary"><h3>{{ producto.discountPercentage }}% </h3> </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
