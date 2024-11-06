@@ -5,9 +5,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="formulario" (submit)="obtenerDatosDelFormulario()">
+    <ion-item>
+      <ion-input fill="outline" type="text" formControlName="username" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input fill="outline" type="password" formControlName="password"> </ion-input>
+    </ion-item>
+    <ion-button type="submit" role="submit"> 
+      <ion-text *ngIf="!(login.$cargando | async)"> Iniciar Sesion </ion-text> 
+      <ion-spinner *ngIf="login.$cargando | async" name="lines-sharp"></ion-spinner>
+    </ion-button>
+  </form>
 </ion-content>
